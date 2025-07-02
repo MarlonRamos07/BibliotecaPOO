@@ -19,6 +19,7 @@ emprestimoService.carregarDeArquivo('emprestimos.json')
 function salvarDados() {
     FileHandler.salvar('livros.json', livroService.listar())
     FileHandler.salvar('membros.json', membroService.listar())
+    FileHandler.salvar('emprestimos.json', emprestimoService.listarTodosEmprestimos())
 }
 
 function exibirMenu(){
@@ -82,9 +83,9 @@ function main(){
         case '4': {
             const membros = membroService.listar()
             console.log('\n Lista de Membros: ')
-            membros.forEach(m =>{
-                console.log(` ${m.getNome()} | ${m.getMatricula()} | ${m.getEndereco()} | ${m.getTelefone()}`)
-            })
+           membros.forEach(m => {
+           console.log(m.exibirResumo())
+           })
             break
         }
         
@@ -129,6 +130,18 @@ function main(){
             break
         }
 
+        case '8': {
+            const todos = emprestimoService.listarTodosEmprestimos()
+            todos.forEach(e => {
+            const livro = e.getLivro()
+            const membro = e.getMembro()
+            const dataEmprestimo = e.getDataEmprestimo().toLocaleDateString()
+            const dataDevolucao = e.getDataDevolucao()?.toLocaleDateString() || "Ainda não devolvido"
+
+            console.log(`${livro.getTitulo()} emprestado para ${membro.getNome()} em ${dataEmprestimo}, devolução: ${dataDevolucao}`)
+        })
+            break
+}
 
         case '0':
             console.log('Encerrando..')

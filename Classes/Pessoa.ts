@@ -39,4 +39,8 @@ export class Pessoa {
         this._telefone = telefone
     }
 
+    public exibirResumo(): string {
+    return `${this._nome} - Matrícula: ${this._matricula}`
+}
+
 }

@@ -10,5 +10,11 @@
     "_autor": "Machado de Assis",
     "_isbn": "12345",
     "_anoPublicacao": 1899
+  },
+  {
+    "_titulo": "A culpa e das estrelas",
+    "_autor": "Johnn Green",
+    "_isbn": "01234",
+    "_anoPublicacao": 2012
   }
 ]
