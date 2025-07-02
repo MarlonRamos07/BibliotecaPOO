@@ -1,0 +1,18 @@
+[
+  {
+    "_livro": {
+      "_titulo": "Dom Casmurro",
+      "_autor": "Machado de Assis",
+      "_isbn": "12345",
+      "_anoPublicacao": 1899
+    },
+    "_membro": {
+      "_nome": "Marlon",
+      "_matricula": "13",
+      "_endereco": "Jose do Patrocinio",
+      "_telefone": "102030"
+    },
+    "_dataEmprestimo": "2025-07-02T15:57:14.100Z",
+    "_dataDevolucao": null
+  }
+]

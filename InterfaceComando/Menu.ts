@@ -14,6 +14,7 @@ const emprestimoService = new EmprestimoService()
 
 livroService.carregarDeArquivo('livros.json')
 membroService.carregarDeArquivo('membros.json')
+emprestimoService.carregarDeArquivo('emprestimos.json')
 
 function salvarDados() {
     FileHandler.salvar('livros.json', livroService.listar())
@@ -132,6 +133,7 @@ function main(){
         case '0':
             console.log('Encerrando..')
             salvarDados()
+            emprestimoService.salvarEmArquivo('emprestimos.json')
             break
 
 
