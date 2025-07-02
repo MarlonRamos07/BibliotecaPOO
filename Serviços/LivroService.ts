@@ -1,5 +1,5 @@
 import { Livro } from '../Classes/Livro'
-
+import {FileHandler} from '../Utilidades/FileHandler'
 export class LivroService {
 
     private livros: Livro[] = []
@@ -31,4 +31,14 @@ export class LivroService {
         return this.livros.length < tamanhoInicial
     }
 
+
+     public carregarDeArquivo(caminho: string): void {
+        const dados = FileHandler.carregar<any>(caminho)
+        this.livros = dados.map(l => new Livro(l._titulo, l._autor, l._isbn, l._anoPublicacao))
+    }
+
+    
+    public salvarNoArquivo(caminho: string): void {
+        FileHandler.salvar(caminho, this.livros)
+    }
 }

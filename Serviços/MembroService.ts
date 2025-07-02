@@ -1,4 +1,5 @@
 import { Membro } from '../Classes/Membro'
+import { FileHandler } from '../Utilidades/FileHandler'
 
 export class MembroService {
 
@@ -31,5 +32,12 @@ export class MembroService {
         return this.membros.length < tamanhoInicial
     }
 
+
+      public carregarDeArquivo(caminho: string): void {
+        const dados = FileHandler.carregar<any>(caminho)
+        this.membros = dados.map((m: any) =>
+            new Membro(m._nome, m._matricula, m._endereco, m._telefone)
+        )
+    }
 
 }
