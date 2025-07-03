@@ -24,7 +24,6 @@ describe('Testes MembroService', () => {
         expect(service.listar()).toEqual([membro1, membro2])
     })
 
-   
     it('Deve buscar corretamente o membro por matrícula', () =>{
         const membro = new Membro('Josefa', '537', 'Rua Jhonson', '505050')
 
@@ -32,21 +31,25 @@ describe('Testes MembroService', () => {
         expect(service.buscarPorMatricula('537')).toBe(membro)
     })
 
-    it('Deve atualizar informações de um membro existente')
+    it('Deve atualizar informações de um membro existente', () => {
+        const membro = new Membro('João Pedro', '002', 'Rua 2', '888-888')
+        const novo = new Membro('João Pedro Edécius', '002', 'Rua 4', '1111111111')
+        service.adicionar(membro)
+        const atualizado = service.atualizar('002', novo)
+        
+
+        expect(atualizado).toBe(true)
+        expect(service.buscarPorMatricula('002')).toBe(novo)
+
+    })
+
+    it('Deve remover o membro especificado', ()=>{
+        const membro = new Membro('João Pedro', '002', 'Rua 2', '888-888')
+        service.adicionar(membro)
+        const removido = service.remover('002')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        expect(removido).toBe(true)
+        expect(service.listar()).not.toContain(membro)
+    })
 })
