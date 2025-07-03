@@ -1,6 +1,8 @@
 import { Membro } from '../Classes/Membro'
 import { FileHandler } from '../Utilidades/FileHandler'
 
+//Aqui é a mesma Lógica dos Livros, só que usando os Membros.
+
 export class MembroService {
 
     private membros: Membro[] = []

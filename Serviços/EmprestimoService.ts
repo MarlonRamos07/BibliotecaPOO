@@ -3,18 +3,20 @@ import { Livro } from '../Classes/Livro'
 import { Membro } from '../Classes/Membro'
 import { FileHandler } from '../Utilidades/FileHandler'
 
+//Gerencia a Lógica dos Empréstimos / Devoluções.
+
 export class EmprestimoService {
 
     private emprestimos: Emprestimo[] = []
 
-    public realizarEmprestimo(livro: Livro, membro: Membro): void {
-        const novoEmprestimo = new Emprestimo(livro, membro, new Date())
-        this.emprestimos.push(novoEmprestimo)
+    public realizarEmprestimo(livro: Livro, membro: Membro): void { 
+        const novoEmprestimo = new Emprestimo(livro, membro, new Date()) // Cria um novo objeto do tipo Emprestimo e usa a data atual.
+        this.emprestimos.push(novoEmprestimo) // Adiciona no array
     }
 
-    public registrarDevolucao(isbn: string, matricula: string): boolean {
-        const emprestimo = this.emprestimos.find( e=>
-            e.getLivro().getISBN() == isbn && 
+    public registrarDevolucao(isbn: string, matricula: string): boolean { // Procura por um empréstimo que tenha essas condiçõe: mesmo ISBN, seja do mesmo membro, e que ainda esteja ativo.
+        const emprestimo = this.emprestimos.find( e=>           // Se achou registra a data de devolução como hoje
+            e.getLivro().getISBN() == isbn &&                   // retorna true se conseguiu devolver, e false se não encontrou.
             e.getMembro().getMatricula() === matricula && 
             e.estaAtivo()
         )
@@ -27,11 +29,11 @@ export class EmprestimoService {
     }
 
     public listarEmprestimosAtivos(): Emprestimo[] {
-        return this.emprestimos.filter(e => e.estaAtivo())
-    }
+        return this.emprestimos.filter(e => e.estaAtivo()) // Retorna somente empréstimos cujo o '' estaAtivo '' é true, ou seja, 
+    }                                                      // que não foram devolvidos.
 
     public listarTodosEmprestimos(): Emprestimo[]{
-        return this.emprestimos
+        return this.emprestimos                             //Lista tudo no array de empréstimos.
     }
 
     public carregarDeArquivo(caminho: string): void {
@@ -44,15 +46,15 @@ export class EmprestimoService {
                 e._livro._isbn,
                 e._livro._anoPublicacao
             )
-
-            const membro = new Membro(
+                                                //Basicamente a mesma lógica, usa o FileHandler para ler o JSON e carregar os dados
+            const membro = new Membro(          // Depois cria cada Livro e Membro com New ( para terem acesso aos métodos)
                 e._membro._nome,
                 e._membro._matricula,
                 e._membro._endereco,
                 e._membro._telefone
             )
 
-            const dataEmprestimo = new Date(e._dataEmprestimo)
+            const dataEmprestimo = new Date(e._dataEmprestimo) // Recria o objeto Emprestimo com a data certa, e se tiver devolução, também registra.
             const dataDevolucao = e._dataDevolucao ? new Date(e._dataDevolucao) : null
 
             const emprestimo = new Emprestimo(livro, membro, dataEmprestimo)
@@ -65,6 +67,6 @@ export class EmprestimoService {
 
     
     public salvarEmArquivo(caminho: string): void {
-        FileHandler.salvar(caminho, this.emprestimos)
+        FileHandler.salvar(caminho, this.emprestimos) // Salva normalmente.
     }
 }

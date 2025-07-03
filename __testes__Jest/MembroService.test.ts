@@ -2,7 +2,7 @@ import { Membro } from '../Classes/Membro'
 import { MembroService } from '../Serviços/MembroService'
 import { FileHandler } from '../Utilidades/FileHandler'
 
-
+//Mock do jest passando o caminho para o fileHandler e os métodos salvar e carregar
 jest.mock('../Utilidades/FileHandler', () => ({
   FileHandler: {
     salvar: jest.fn(),

@@ -6,19 +6,22 @@ import { MembroService } from '../Serviços/MembroService'
 import { EmprestimoService } from '../Serviços/EmprestimoService'
 import { FileHandler } from '../Utilidades/FileHandler'
 
+
+//Aqui vai a lógica de Interface de Comando
+
 const teclado = promptSync()
 
 const livroService = new LivroService()
-const membroService = new MembroService()
+const membroService = new MembroService()                       // Prepara para poder utilizar os métodos.
 const emprestimoService = new EmprestimoService()
 
 livroService.carregarDeArquivo('livros.json')
-membroService.carregarDeArquivo('membros.json')
+membroService.carregarDeArquivo('membros.json')                   //Passa os arquivos para usarmos no handler depois
 emprestimoService.carregarDeArquivo('emprestimos.json')
 
 function salvarDados() {
     FileHandler.salvar('livros.json', livroService.listar())
-    FileHandler.salvar('membros.json', membroService.listar())
+    FileHandler.salvar('membros.json', membroService.listar())                          // função para salvar passando o arquivo e os dados.
     FileHandler.salvar('emprestimos.json', emprestimoService.listarTodosEmprestimos())
 }
 
@@ -41,7 +44,7 @@ function exibirMenu(){
     console.log('0 - Sair')
 }
  
-function main(){
+function main(){ // Um Switch que valida a opção e executa conforme o que o usuário digita.
     let opcao: string
 
     do {
