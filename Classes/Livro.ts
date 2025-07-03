@@ -1,13 +1,13 @@
 export class Livro {
     constructor(
-        private _titulo: string,
+        private _titulo: string, // Aqui os atributos podem ser privados justamente porque nennhuma classe é herdeira de Livro
         private _autor: string,
-        private _isbn: string,
+        private _isbn: string,      // Como nenhuma classe precisa acessar diretamente atributos como _titulo e _autor 
         private _anoPublicacao: number
     ) {}
 
 
-    public getTitulo(): string {
+    public getTitulo(): string {    
         return this._titulo
     }
 

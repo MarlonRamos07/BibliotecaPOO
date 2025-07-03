@@ -2,16 +2,16 @@ export class Pessoa {
 
     constructor(
         protected _nome: string,
-        protected _matricula: string,
+        protected _matricula: string,  // Protected vai proteger os atributos de serem acessados diretamente fora da classe.
         protected _endereco: string,
         protected _telefone: string 
     ) {}
 
-    public getNome(): string{
+    public getNome(): string{ 
         return this._nome 
     }
-
-    public setNome(nome: string): void {
+                                                // Esses métodos são acessíveis de qualquer lugar, servem pra controlar o acesso.
+    public setNome(nome: string): void {        // Aqui é um exemplo de encapsulamento 
         this._nome = nome
     }
 
@@ -39,8 +39,12 @@ export class Pessoa {
         this._telefone = telefone
     }
 
-    public exibirResumo(): string {
+    public exibirResumo(): string {    // Aqui é basicamente pra imprimir mais 'rápido' o nome e a matrícula de algum membro.
     return `${this._nome} - Matrícula: ${this._matricula}`
-}
 
 }
+}
+
+// Classe base Pessoa que representa dados comuns (nome, matrícula, etc.)
+// Os atributos são "protected" para que possam ser reutilizados por classes filhas (ex: Membro)
+// Getters e Setters públicos garantem encapsulamento e controle de acesso aos atributos
