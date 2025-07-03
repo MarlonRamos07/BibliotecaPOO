@@ -40,7 +40,7 @@ export class Pessoa {
     }
 
     public exibirResumo(): string {    // Aqui é basicamente pra imprimir mais 'rápido' o nome e a matrícula de algum membro.
-    return `${this._nome} - Matrícula: ${this._matricula}`
+    return `${this._nome} - Matrícula: ${this._matricula} - Telefone: ${this._telefone} - Endereço: ${this._endereco}`
 
 }
 }

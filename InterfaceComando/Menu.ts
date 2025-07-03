@@ -208,12 +208,12 @@ function main(){ // Um Switch que valida a opção e executa conforme o que o us
             if (emprestimosFinalizados.length === 0){
                 console.log('Nenhum ')
             } else {
-                console.log(' Histórico de Devoluções ')
+                console.log('\n============== Histórico de Devoluções==============  \n===================================================== ')
                 emprestimosFinalizados.forEach(e => {
                     console.log(`Livro: ${e.getLivro().getTitulo()}`)
                     console.log(`Membro: ${e.getMembro().getNome()}`)
                     console.log(`Data do Empréstimo: ${e.getDataEmprestimo().toLocaleDateString()}`)
-                    console.log(`Data da Devolução: ${e.getDataDevolucao()?.toLocaleString()}`)
+                    console.log(`Data e Hora da Devolução: ${e.getDataDevolucao()?.toLocaleString()}`)
                     console.log('-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-')
                 })
             }
