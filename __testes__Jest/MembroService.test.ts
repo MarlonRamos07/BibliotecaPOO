@@ -1,5 +1,15 @@
 import { Membro } from '../Classes/Membro'
 import { MembroService } from '../Serviços/MembroService'
+import { FileHandler } from '../Utilidades/FileHandler'
+
+
+jest.mock('../Utilidades/FileHandler', () => ({
+  FileHandler: {
+    salvar: jest.fn(),
+    carregar: jest.fn()
+  }
+}))
+
 
 describe('Testes MembroService', () => {
     let service: MembroService
@@ -52,4 +62,18 @@ describe('Testes MembroService', () => {
         expect(removido).toBe(true)
         expect(service.listar()).not.toContain(membro)
     })
+
+    it('Deve carregar membros do arquivo usando FileHandler', () => {
+        const mockDados = [
+        { _nome: 'Carlos', _matricula: '100', _endereco: 'Rua Nova', _telefone: '99999' }
+        ]
+        ;(FileHandler.carregar as jest.Mock).mockReturnValue(mockDados)
+
+        service.carregarDeArquivo('membros.json')
+
+        const membros = service.listar()
+        expect(membros.length).toBe(1)
+        expect(membros[0].getNome()).toBe('Carlos')
+    })
+
 })

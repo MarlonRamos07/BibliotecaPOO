@@ -1,5 +1,13 @@
 import { Livro }  from '../Classes/Livro'
 import { LivroService } from '../Serviços/LivroService'
+import { FileHandler } from '../Utilidades/FileHandler'
+
+jest.mock('../Utilidades/FileHandler', () => ({
+  FileHandler: {
+    salvar: jest.fn(),                                       // Mock do FileHandler
+    carregar: jest.fn()
+  }
+}))
 
 describe('Testes LivroService', () =>{
     let service: LivroService
@@ -53,4 +61,27 @@ describe('Testes LivroService', () =>{
         expect(removido).toBe(true)
         expect(service.listar()).not.toContain(livro)
     })
+
+    it('Deve salvar no arquivo usando FileHandler', () => {
+        const livro = new Livro('Memórias Póstumas', 'Machado', '789', 1881)
+        service.adicionar(livro)
+        service.salvarNoArquivo('livros.json')
+
+        expect(FileHandler.salvar).toHaveBeenCalledWith('livros.json', [livro])
+    })
+
+    it('Deve carregar livros do arquivo usando FileHandler', () => {
+        const mockDados = [
+        { _titulo: 'Senhora', _autor: 'José de Alencar', _isbn: '654', _anoPublicacao: 1875 }
+        ]
+        ;(FileHandler.carregar as jest.Mock).mockReturnValue(mockDados)
+
+        service.carregarDeArquivo('livros.json')
+
+        const livros = service.listar()
+        expect(livros.length).toBe(1)
+        expect(livros[0].getTitulo()).toBe('Senhora')
+        expect(livros[0].getISBN()).toBe('654')
+    })
+
 })
