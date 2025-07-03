@@ -35,7 +35,7 @@ describe('Testes LivroService', () =>{
 
     it('Deve atualizar informações de um livro existente', () => {
         const livroOrignal = new Livro('Título Antigo', 'Autor A1', 'abc123', 2000)
-        const livroAtualizado = new Livro('Título Novo', 'Autor A2', 'abdc1234', 2001)
+        const livroAtualizado = new Livro('Título Novo', 'Autor A2', 'abc123', 2001)
 
         service.adicionar(livroOrignal)
         const sucesso = service.atualizar('abc123', livroAtualizado)

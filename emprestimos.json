@@ -29,6 +29,22 @@
       "_telefone": "1234556677"
     },
     "_dataEmprestimo": "2025-07-02T21:25:30.905Z",
+    "_dataDevolucao": "2025-07-03T01:50:42.165Z"
+  },
+  {
+    "_livro": {
+      "_titulo": "A culpa e das estrelas",
+      "_autor": "Johnn Green",
+      "_isbn": "01234",
+      "_anoPublicacao": 2012
+    },
+    "_membro": {
+      "_nome": "Milene da Luz",
+      "_matricula": "14",
+      "_endereco": "Jose do Patrocinio",
+      "_telefone": "1234556677"
+    },
+    "_dataEmprestimo": "2025-07-03T01:50:06.755Z",
     "_dataDevolucao": null
   }
 ]
